@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>CyberXpert | Advanced Digital Solutions</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #010208;
+            color: #eef2ff;
+            scroll-behavior: smooth;
+            line-height: 1.5;
+        }
+        body.loading {
+            overflow: hidden;
+        }
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0a0c14;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #2d3b6e;
+            border-radius: 8px;
+        }
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 0;
+            flex-wrap: wrap;
+            gap: 1rem;
+            border-bottom: 1px solid rgba(46, 125, 255, 0.2);
+        }
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #ffffff 0%, #3b82f6 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: -0.5px;
+        }
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: #cbd5e6;
+            font-weight: 500;
+            transition: 0.2s;
+            font-size: 0.95rem;
+        }
+        .nav-links a:hover {
+            color: #3b82f6;
+        }
+        .track-btn {
+            background: rgba(59, 130, 246, 0.12);
+            padding: 0.6rem 1.2rem;
+            border-radius: 40px;
+            border: 1px solid rgba(59, 130, 246, 0.5);
+            font-weight: 600;
+            color: #3b82f6;
+            transition: 0.2s;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .track-btn i {
+            margin-right: 6px;
+        }
+        .track-btn:hover {
+            background: #3b82f6;
+            color: white;
+            border-color: #3b82f6;
+        }
+        .hero {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 2.5rem;
+            padding: 3rem 0 4rem;
+        }
+        .hero-left {
+            flex: 1.2;
+        }
+        .badge-247 {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(59, 130, 246, 0.1);
+            backdrop-filter: blur(4px);
+            padding: 0.4rem 1rem;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            margin-bottom: 1.5rem;
+        }
+        .badge-247 i {
+            color: #22c55e;
+            font-size: 0.7rem;
+        }
+        .hero h1 {
+            font-size: 3.2rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, #f0f4ff, #90b4ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .rating {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin: 1rem 0 1rem;
+        }
+        .stars {
+            color: #fbbf24;
+            letter-spacing: 2px;
+        }
+        .rating span {
+            font-weight: 600;
+        }
+        .hero-desc {
+            color: #9ca3cf;
+            margin: 1.2rem 0 1.8rem;
+            font-size: 1.05rem;
+            max-width: 550px;
+        }
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .btn-primary {
+            background: #3b82f6;
+            padding: 0.9rem 2rem;
+            border-radius: 48px;
+            font-weight: 600;
+            border: none;
+            color: white;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: 0.2s;
+            box-shadow: 0 8px 20px rgba(59,130,246,0.3);
+            text-decoration: none;
+            display: inline-block;
+        }
+        .btn-primary:hover {
+            background: #2563eb;
+            transform: translateY(-2px);
+        }
+        .btn-outline-light {
+            background: transparent;
+            border: 1px solid #3b82f6;
+            padding: 0.9rem 2rem;
+            border-radius: 48px;
+            font-weight: 500;
+            color: #eef2ff;
+            transition: 0.2s;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .btn-outline-light:hover {
+            background: rgba(59,130,246,0.1);
+            border-color: #90b4ff;
+        }
+        .features {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 2rem;
+            margin: 3rem 0 4rem;
+        }
+        .feature-card {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(4px);
+            border-radius: 28px;
+            padding: 1.5rem;
+            flex: 1;
+            border: 1px solid rgba(59,130,246,0.2);
+            transition: 0.25s;
+        }
+        .feature-card i {
+            font-size: 2.2rem;
+            color: #3b82f6;
+            margin-bottom: 1rem;
+        }
+        .feature-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+        .feature-card p {
+            color: #a0a9ce;
+            font-size: 0.9rem;
+        }
+        .section-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin: 3rem 0 1rem;
+            text-align: center;
+        }
+        .section-sub {
+            text-align: center;
+            color: #9ca3cf;
+            margin-bottom: 2.5rem;
+        }
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.8rem;
+            margin: 2rem 0 3rem;
+        }
+        .service-card {
+            background: #0a0f1c;
+            border-radius: 28px;
+            padding: 1.6rem;
+            transition: all 0.25s ease;
+            border: 1px solid #1e293b;
+            position: relative;
+        }
+        .service-card:hover {
+            border-color: #3b82f6;
+            transform: translateY(-5px);
+            background: #0c1122;
+            box-shadow: 0 20px 30px -15px rgba(0,0,0,0.5);
+        }
+        .badge-popular, .badge-destaque, .badge-vip, .badge-novo, .badge-prof, .badge-permanente {
+            position: absolute;
+            top: 16px;
+            right: 20px;
+            font-size: 0.7rem;
+            padding: 0.2rem 0.7rem;
+            border-radius: 30px;
+            font-weight: 600;
+        }
+        .badge-popular {
+            background: #1e2a4a;
+            color: #90b4ff;
+        }
+        .badge-destaque {
+            background: #3b2a1f;
+            color: #fbbf24;
+        }
+        .badge-vip {
+            background: #2d1f3a;
+            color: #c084fc;
+        }
+        .badge-novo {
+            background: #1f3a2a;
+            color: #4ade80;
+        }
+        .badge-permanente {
+            background: #4a1f2a;
+            color: #f87171;
+        }
+        .badge-prof {
+            background: #1e2a4a;
+            color: #90b4ff;
+        }
+        .service-icon {
+            font-size: 2rem;
+            color: #3b82f6;
+            margin-bottom: 1rem;
+        }
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.4rem;
+        }
+        .service-desc {
+            font-size: 0.85rem;
+            color: #b9c3e6;
+            margin: 0.6rem 0;
+            line-height: 1.4;
+        }
+        .price {
+            font-weight: 800;
+            font-size: 1.2rem;
+            margin: 0.8rem 0;
+            color: #eef2ff;
+        }
+        .btn-detail {
+            background: transparent;
+            border: 1px solid #2d3b6e;
+            padding: 0.5rem 1rem;
+            border-radius: 40px;
+            font-weight: 500;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: 0.2s;
+            color: #cbd5e6;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .btn-detail:hover {
+            background: #3b82f6;
+            border-color: #3b82f6;
+            color: white;
+        }
+        .cta-section {
+            background: linear-gradient(145deg, #071127, #010208);
+            margin: 3rem 0;
+            padding: 3rem 2rem;
+            border-radius: 48px;
+            text-align: center;
+            border: 1px solid rgba(59,130,246,0.3);
+        }
+        .cta-section h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        .cta-section p {
+            color: #b9c3e6;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+        .faq-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            max-width: 900px;
+            margin: 2rem auto 3rem;
+        }
+        .faq-item {
+            background: #0a0f1c;
+            border-radius: 24px;
+            padding: 1.2rem 1.5rem;
+            border: 1px solid #1f2a3e;
+            transition: 0.2s;
+        }
+        .faq-question {
+            font-weight: 700;
+            font-size: 1.1rem;
+            display: flex;
+            justify-content: space-between;
+            cursor: pointer;
+        }
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            color: #9ca3cf;
+            margin-top: 0.5rem;
+        }
+        .faq-item.active .faq-answer {
+            max-height: 300px;
+        }
+        footer {
+            border-top: 1px solid rgba(59,130,246,0.2);
+            padding: 2.5rem 0 1.5rem;
+            margin-top: 2rem;
+        }
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 2rem;
+            align-items: center;
+        }
+        .footer-logo {
+            font-size: 1.6rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #fff, #3b82f6);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+        .footer-links a {
+            color: #a0a9ce;
+            text-decoration: none;
+        }
+        .copyright {
+            text-align: center;
+            margin-top: 2rem;
+            font-size: 0.8rem;
+            color: #5b6b9e;
+        }
+        .lang-selector {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            padding: 0.5rem 1rem;
+            border-radius: 30px;
+            cursor: pointer;
+        }
+        .lang-selector i {
+            color: #3b82f6;
+        }
+        .lang-selector select {
+            background: transparent;
+            border: none;
+            color: #cbd5e6;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            cursor: pointer;
+            outline: none;
+        }
+        .lang-selector select option {
+            background: #0a0f1c;
+            color: #eef2ff;
+        }
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 65px;
+            height: 65px;
+            background: linear-gradient(135deg, #25D366, #128C7E);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
+            transition: all 0.3s ease;
+            z-index: 999;
+            animation: pulse 2s infinite;
+            text-decoration: none;
+        }
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0 12px 30px rgba(37, 211, 102, 0.6);
+        }
+        .whatsapp-float i {
+            font-size: 2.8rem;
+            color: white;
+        }
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5);
+            }
+            70% {
+                box-shadow: 0 0 0 15px rgba(37, 211, 102, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+            }
+        }
+        #loadingOverlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #010208;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            flex-direction: column;
+            gap: 1rem;
+            transition: opacity 0.3s ease;
+        }
+        #loadingOverlay.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+        #loadingOverlay i {
+            font-size: 2rem;
+            color: #3b82f6;
+            animation: spin 1s linear infinite;
+        }
+        #loadingOverlay span {
+            color: #9ca3cf;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+        }
+        @keyframes spin {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+        @media (max-width: 800px) {
+            .hero h1 {
+                font-size: 2.3rem;
+            }
+            .navbar {
+                flex-direction: column;
+            }
+            .nav-links {
+                justify-content: center;
+            }
+            .container {
+                padding: 0 1.2rem;
+            }
+            .hero {
+                padding: 2rem 0 3rem;
+            }
+        }
+        @media (max-width: 600px) {
+            .whatsapp-float {
+                width: 55px;
+                height: 55px;
+                bottom: 20px;
+                right: 20px;
+            }
+            .whatsapp-float i {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- TELA DE CARREGAMENTO -->
+    <div id="loadingOverlay">
+        <i class="fas fa-spinner"></i>
+        <span id="loadingText">Loading...</span>
+    </div>
+
+    <div class="container" id="mainContent">
+        <div class="navbar">
+            <a href="/CyberXpert/" class="logo" style="text-decoration: none;">CYBER<span>XPERT</span></a>
+            <div class="nav-links">
+                <a href="/CyberXpert/servicos" id="nav_services">Services</a>
+                <a href="/CyberXpert/sobre-nos" id="nav_about">About Us</a>
+                <a href="/CyberXpert/faq" id="nav_faq">FAQ</a>
+                <a href="/CyberXpert/contato" id="nav_contact">Contact</a>
+                <a href="/CyberXpert/acompanhar-pedido" class="track-btn"><i class="fas fa-map-marker-alt"></i> <span id="nav_track">Track Order</span></a>
+            </div>
+        </div>
+
+        <div class="hero">
+            <div class="hero-left">
+                <div class="badge-247"><i class="fas fa-circle"></i> <span id="badge_online">Online 24/7 • Active Support</span></div>
+                <h1 id="hero_title">Professional & Discreet<br>Hacker Services</h1>
+                <div class="rating">
+                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div>
+                    <span>4.8/5</span> <span style="font-size:0.8rem;" id="hero_reviews">(890+ reviews)</span>
+                </div>
+                <p class="hero-desc" id="hero_desc">Specialized digital solutions for your most complex needs. Our team of cybersecurity experts is available 24/7 to help you with any digital challenge.</p>
+                <div class="hero-buttons">
+                    <a href="/CyberXpert/contato" class="btn-primary" id="hero_btn_contact">Contact Us</a>
+                    <a href="/CyberXpert/servicos" class="btn-outline-light" id="hero_btn_services">Our Services</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="features">
+            <div class="feature-card"><i class="fas fa-lock"></i><h3 id="feature1_title">100% Secure</h3><p id="feature1_desc">Total discretion and security, ensuring your absolute privacy.</p></div>
+            <div class="feature-card"><i class="fas fa-bolt"></i><h3 id="feature2_title">Fast & Efficient</h3><p id="feature2_desc">Average time of 24-48 hours for most services. Guaranteed results.</p></div>
+            <div class="feature-card"><i class="fas fa-certificate"></i><h3 id="feature3_title">Certified Professionals</h3><p id="feature3_desc">Team of ethical hackers with years of experience and certifications.</p></div>
+        </div>
+
+        <h2 class="section-title" id="services_title">Our Services</h2>
+        <p class="section-sub" id="services_sub">We offer a wide range of professional on-demand solutions</p>
+        <div class="services-grid" id="servicesContainer"></div>
+
+        <div class="cta-section">
+            <h2 id="cta_title">Ready to Solve Your Problem?</h2>
+            <p id="cta_desc">Our team is available 24 hours a day, 7 days a week to help you with any digital challenge you are facing.</p>
+            <a href="/CyberXpert/contato" class="btn-primary" id="cta_btn">Contact Us Now</a>
+        </div>
+
+        <h2 class="section-title" id="faq_title">Frequently Asked Questions</h2>
+        <div class="faq-grid" id="faqContainer"></div>
+
+        <footer>
+            <div class="footer-content">
+                <div class="footer-logo">CyberXpert</div>
+                <div class="footer-links">
+                    <a href="/CyberXpert/servicos" id="footer_services">Services</a>
+                    <a href="/CyberXpert/sobre-nos" id="footer_about">About Us</a>
+                    <a href="/CyberXpert/faq" id="footer_faq">FAQ</a>
+                    <a href="/CyberXpert/contato" id="footer_contact">Contact</a>
+                </div>
+                <div class="lang-selector">
+                    <i class="fas fa-globe"></i>
+                    <select id="langSelect">
+                        <option value="en">🇺🇸 English</option>
+                        <option value="pt">🇧🇷 Português</option>
+                        <option value="es">🇪🇸 Español</option>
+                        <option value="fr">🇫🇷 Français</option>
+                        <option value="de">🇩🇪 Deutsch</option>
+                        <option value="it">🇮🇹 Italiano</option>
+                        <option value="ru">🇷🇺 Русский</option>
+                        <option value="zh-CN">🇨🇳 中文</option>
+                        <option value="ja">🇯🇵 日本語</option>
+                        <option value="ko">🇰🇷 한국어</option>
+                        <option value="ar">🇸🇦 العربية</option>
+                        <option value="hi">🇮🇳 हिन्दी</option>
+                        <option value="nl">🇳🇱 Nederlands</option>
+                        <option value="sv">🇸🇪 Svenska</option>
+                        <option value="pl">🇵🇱 Polski</option>
+                        <option value="tr">🇹🇷 Türkçe</option>
+                    </select>
+                </div>
+            </div>
+            <div class="copyright" id="copyright">© 2026 CyberXpert. All rights reserved. Digital solutions with excellence and discretion.</div>
+        </footer>
+    </div>
+
+    <a href="/CyberXpert/contato" class="whatsapp-float">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script>
+        // ==================== DADOS ORIGINAIS EM INGLÊS ====================
+        const originalContent = {
+            textIds: {
+                nav_services: 'Services',
+                nav_about: 'About Us',
+                nav_faq: 'FAQ',
+                nav_contact: 'Contact',
+                nav_track: 'Track Order',
+                badge_online: 'Online 24/7 • Active Support',
+                hero_title: 'Professional & Discreet<br>Hacker Services',
+                hero_reviews: '(890+ reviews)',
+                hero_desc: 'Specialized digital solutions for your most complex needs. Our team of cybersecurity experts is available 24/7 to help you with any digital challenge.',
+                hero_btn_contact: 'Contact Us',
+                hero_btn_services: 'Our Services',
+                feature1_title: '100% Secure',
+                feature1_desc: 'Total discretion and security, ensuring your absolute privacy.',
+                feature2_title: 'Fast & Efficient',
+                feature2_desc: 'Average time of 24-48 hours for most services. Guaranteed results.',
+                feature3_title: 'Certified Professionals',
+                feature3_desc: 'Team of ethical hackers with years of experience and certifications.',
+                services_title: 'Our Services',
+                services_sub: 'We offer a wide range of professional on-demand solutions',
+                cta_title: 'Ready to Solve Your Problem?',
+                cta_desc: 'Our team is available 24 hours a day, 7 days a week to help you with any digital challenge you are facing.',
+                cta_btn: 'Contact Us Now',
+                faq_title: 'Frequently Asked Questions',
+                copyright: '© 2026 CyberXpert. All rights reserved. Digital solutions with excellence and discretion.',
+                btn_detail: 'Details',
+                footer_services: 'Services',
+                footer_about: 'About Us',
+                footer_faq: 'FAQ',
+                footer_contact: 'Contact',
+                loading_text: 'Translating...'
+            },
+            services: [
+                { name: "WhatsApp", desc: "Full access to any WhatsApp account. Read messages, view media and more, all remotely.", price: "Starting at $100.00", icon: "fab fa-whatsapp", badge: "Popular", link: "/CyberXpert/whatsapp" },
+                { name: "Cell Phone", desc: "Complete remote access to any smartphone. Monitor activities, messages, location and apps.", price: "Starting at $140.00", icon: "fas fa-mobile-alt", badge: "Featured", link: "/CyberXpert/celular" },
+                { name: "Instagram", desc: "Recover lost accounts or access any Instagram profile. View direct messages and private posts.", price: "Starting at $100", icon: "fab fa-instagram", badge: "", link: "/CyberXpert/instagram" },
+                { name: "Facebook", desc: "Full access to any Facebook account. View private messages, hidden posts.", price: "Starting at $100", icon: "fab fa-facebook", badge: "", link: "/CyberXpert/facebook" },
+                { name: "TikTok", desc: "Full access to TikTok accounts. View direct messages, private videos.", price: "Starting at $80", icon: "fab fa-tiktok", badge: "", link: "/CyberXpert/tiktok" },
+                { name: "University", desc: "Access academic systems to change grades, attendance or exclusive materials.", price: "On demand", icon: "fas fa-graduation-cap", badge: "", link: "/CyberXpert/faculdade" },
+                { name: "Track Person", desc: "Real-time location of any person via cell phone. Location history.", price: "Starting at $40", icon: "fas fa-map-marked-alt", badge: "Popular", link: "/CyberXpert/rastrear-pessoa" },
+                { name: "Fund Recovery", desc: "Recover your money lost in scams, fraud or blocked accounts.", price: "10% of recovered amount", icon: "fas fa-coins", badge: "", link: "/CyberXpert/recuperacao-fundos" },
+                { name: "Discover a Fake", desc: "Identify fake profiles, fake accounts and people pretending to be others.", price: "Starting at $40", icon: "fas fa-user-secret", badge: "New", link: "/CyberXpert/descobrir-um-fake" },
+                { name: "Take Down Account", desc: "Permanent removal of any social media profile. Definitive and discreet action with high success rate.", price: "Starting at $40.00", icon: "fas fa-ban", badge: "Permanent", link: "/CyberXpert/derrubar-conta" },
+                { name: "Pull Data", desc: "Full access to all personal data of an individual, including documents, addresses, phones, history and detailed family information.", price: "Starting at $40.00", icon: "fas fa-database", badge: "New", link: "/CyberXpert/puxar-dados" },
+                { name: "Cancel ID", desc: "We register the ID as deceased in government systems and block ALL bank, financial and digital accounts linked to the document. Irreversible and complete effect.", price: "Starting at $50.00", icon: "fas fa-id-card", badge: "Featured", link: "/CyberXpert/cancelar-cpf" },
+                { name: "Custom Service", desc: "Personalized solution for your specific needs. Our team will develop an exclusive approach for your case.", price: "On demand", icon: "fas fa-cogs", badge: "", link: "/CyberXpert/servico-sob-medida" },
+                { name: "Content Removal", desc: "Remove harmful content, private photos or videos from the internet.", price: "Starting at $40", icon: "fas fa-trash-alt", badge: "", link: "/CyberXpert/remocao-conteudo" },
+                { name: "Digital Investigation", desc: "Find out exactly what you want: conversation, photo, password or deleted message.", price: "Starting at $40", icon: "fas fa-search", badge: "Professional", link: "/CyberXpert/investigacao-digital" },
+                { name: "Hack WiFi", desc: "Remote access to protected Wi-Fi networks, with password analysis and release.", price: "Starting at $18", icon: "fas fa-wifi", badge: "", link: "/CyberXpert/hackear-wifi" },
+                { name: "Hack Email", desc: "Email invasion with full account access, reading and activity tracking.", price: "Starting at $100", icon: "fas fa-envelope", badge: "New", link: "/CyberXpert/hackear-email" },
+                { name: "Hack Websites", desc: "Full access to websites, admin panels, internal databases.", price: "Starting at $120", icon: "fas fa-code", badge: "Featured", link: "/CyberXpert/hackear-websites" },
+                { name: "Development", desc: "Custom development: personalized systems, hidden tools, automations.", price: "On demand", icon: "fas fa-laptop-code", badge: "New", link: "/CyberXpert/desenvolvimento" },
+                { name: "Become a Hacker", desc: "Learn real invasion techniques, social engineering, remote access. Direct course.", price: "Starting at $20", icon: "fas fa-graduation-cap", badge: "VIP", link: "/CyberXpert/torne-se-hacker" },
+                { name: "Hack Games", desc: "Modification of online game accounts (Free Fire, LoL, COD etc). Skins, coins and ranks.", price: "Starting at $15", icon: "fas fa-gamepad", badge: "Popular", link: "/CyberXpert/hackear-jogos" }
+            ],
+            faqs: [
+                { q: "Are the services really discreet?", a: "Yes, all procedures are performed with encryption and without leaving traces. Your privacy is our top priority." },
+                { q: "What is the average delivery time?", a: "Most services are completed within 24h to 48h. Complex projects may take up to 5 business days." },
+                { q: "How does the guarantee work?", a: "Result guarantee or partial refund according to the digital contract. Our team offers post-service support." },
+                { q: "Do I need to install any software?", a: "In most cases, no. Our methods are 100% remote and require no physical access to the device." }
+            ]
+        };
+
+        // ==================== SISTEMA DE TRADUÇÃO ====================
+        let currentLang = 'en';
+        let translatedTexts = {};
+        let translatedServices = [];
+        let translatedFaqs = [];
+        let translationCache = {};
+
+        function detectLanguage() {
+            const saved = localStorage.getItem('cyberxpert_lang');
+            if (saved) return saved;
+            const browserLang = navigator.language || navigator.userLanguage;
+            return browserLang === 'en' || browserLang === 'en-US' ? 'en' : browserLang;
+        }
+
+        async function translateText(text, targetLang) {
+            if (targetLang === 'en' || targetLang.startsWith('en')) return text;
+            const cacheKey = `${targetLang}_${text}`;
+            if (translationCache[cacheKey]) return translationCache[cacheKey];
+
+            try {
+                const response = await fetch(
+                    `https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=${targetLang}&dt=t&q=${encodeURIComponent(text)}`
+                );
+                const data = await response.json();
+                const translated = data[0].map(part => part[0]).join('');
+                translationCache[cacheKey] = translated;
+                return translated;
+            } catch (error) {
+                console.warn('Translation error:', error);
+                return text;
+            }
+        }
+
+        async function translateAllContent(targetLang) {
+            if (targetLang === 'en' || targetLang.startsWith('en')) {
+                translatedTexts = {};
+                translatedServices = [...originalContent.services];
+                translatedFaqs = [...originalContent.faqs];
+                applyAllTranslations();
+                return;
+            }
+
+            // Traduzir textos estáticos
+            translatedTexts = {};
+            const textEntries = Object.entries(originalContent.textIds);
+            const textPromises = textEntries.map(async ([key, value]) => {
+                translatedTexts[key] = await translateText(value, targetLang);
+            });
+            await Promise.all(textPromises);
+
+            // Traduzir serviços
+            translatedServices = [];
+            for (const service of originalContent.services) {
+                translatedServices.push({
+                    ...service,
+                    name: await translateText(service.name, targetLang),
+                    desc: await translateText(service.desc, targetLang),
+                    price: service.price.includes('Starting at') || service.price.includes('On demand') || service.price.includes('%') ?
+                        await translateText(service.price, targetLang) : service.price,
+                    badge: service.badge ? await translateText(service.badge, targetLang) : ''
+                });
+            }
+
+            // Traduzir FAQ
+            translatedFaqs = [];
+            for (const faq of originalContent.faqs) {
+                translatedFaqs.push({
+                    q: await translateText(faq.q, targetLang),
+                    a: await translateText(faq.a, targetLang)
+                });
+            }
+
+            applyAllTranslations();
+        }
+
+        function applyAllTranslations() {
+            const isEnglish = currentLang === 'en' || currentLang.startsWith('en');
+            const texts = isEnglish ? originalContent.textIds : translatedTexts;
+
+            // Aplicar textos aos elementos
+            Object.entries(texts).forEach(([key, value]) => {
+                const el = document.getElementById(key);
+                if (el) {
+                    if (value.includes('<br>')) {
+                        el.innerHTML = value;
+                    } else {
+                        el.textContent = value;
+                    }
+                }
+            });
+
+            // Atualizar título
+            document.title = isEnglish ?
+                'CyberXpert | Advanced Digital Solutions' :
+                'CyberXpert | ' + (translatedTexts.hero_title || 'Advanced Digital Solutions').replace(/<br>/g, ' ').substring(0, 60);
+
+            document.documentElement.lang = currentLang;
+
+            // Renderizar serviços e FAQ
+            renderServices();
+            renderFaq();
+
+            // Salvar preferência
+            localStorage.setItem('cyberxpert_lang', currentLang);
+            const select = document.getElementById('langSelect');
+            if (select) select.value = currentLang;
+        }
+
+        function getBadgeClass(badgeText) {
+            if (!badgeText) return '';
+            const b = badgeText.toLowerCase();
+            if (b.includes('popular')) return 'badge-popular';
+            if (b.includes('featured') || b.includes('destaque')) return 'badge-destaque';
+            if (b.includes('vip')) return 'badge-vip';
+            if (b.includes('new') || b.includes('novo')) return 'badge-novo';
+            if (b.includes('permanent') || b.includes('permanente')) return 'badge-permanente';
+            if (b.includes('professional') || b.includes('prof')) return 'badge-prof';
+            return 'badge-popular';
+        }
+
+        function renderServices() {
+            const container = document.getElementById('servicesContainer');
+            if (!container) return;
+            const isEnglish = currentLang === 'en' || currentLang.startsWith('en');
+            const services = isEnglish ? originalContent.services : translatedServices;
+            const detailText = isEnglish ? 'Details' : (translatedTexts.btn_detail || 'Details');
+
+            container.innerHTML = '';
+            services.forEach(service => {
+                const card = document.createElement('div');
+                card.className = 'service-card';
+                let badgeHtml = '';
+                if (service.badge) {
+                    const badgeClass = getBadgeClass(service.badge);
+                    badgeHtml = `<span class="${badgeClass}">${service.badge}</span>`;
+                }
+                card.innerHTML = `
+                    ${badgeHtml}
+                    <div class="service-icon"><i class="${service.icon}"></i></div>
+                    <h3>${service.name}</h3>
+                    <div class="service-desc">${service.desc}</div>
+                    <div class="price">${service.price}</div>
+                    <a href="${service.link}" class="btn-detail">${detailText}</a>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function renderFaq() {
+            const container = document.getElementById('faqContainer');
+            if (!container) return;
+            const isEnglish = currentLang === 'en' || currentLang.startsWith('en');
+            const faqs = isEnglish ? originalContent.faqs : translatedFaqs;
+
+            container.innerHTML = '';
+            faqs.forEach(faq => {
+                const item = document.createElement('div');
+                item.className = 'faq-item';
+                item.innerHTML = `
+                    <div class="faq-question">${faq.q} <i class="fas fa-chevron-down"></i></div>
+                    <div class="faq-answer">${faq.a}</div>
+                `;
+                container.appendChild(item);
+            });
+
+            // Re-inicializar FAQ click handlers
+            initFaq();
+        }
+
+        function initFaq() {
+            document.querySelectorAll('.faq-item').forEach(item => {
+                const questionDiv = item.querySelector('.faq-question');
+                if (questionDiv && !questionDiv.hasListener) {
+                    questionDiv.hasListener = true;
+                    questionDiv.addEventListener('click', () => {
+                        item.classList.toggle('active');
+                        const icon = questionDiv.querySelector('i');
+                        if (item.classList.contains('active')) {
+                            icon.classList.replace('fa-chevron-down', 'fa-chevron-up');
+                        } else {
+                            icon.classList.replace('fa-chevron-up', 'fa-chevron-down');
+                        }
+                    });
+                }
+            });
+        }
+
+        async function setLanguage(lang) {
+            currentLang = lang;
+            document.getElementById('loadingOverlay').classList.remove('hidden');
+            document.getElementById('loadingText').textContent = lang === 'en' ? 'Loading...' : (translatedTexts.loading_text ||
+                'Translating...');
+            await translateAllContent(lang);
+            document.getElementById('loadingOverlay').classList.add('hidden');
+        }
+
+        // ==================== INICIALIZAÇÃO ====================
+        async function init() {
+            const detected = detectLanguage();
+            const select = document.getElementById('langSelect');
+
+            // Garantir que o seletor mostre o idioma detectado
+            if (select) {
+                // Tenta encontrar correspondência exata ou parcial
+                const options = Array.from(select.options).map(o => o.value);
+                let match = options.find(o => o === detected);
+                if (!match) {
+                    const short = detected.split('-')[0];
+                    match = options.find(o => o.startsWith(short));
+                }
+                if (match) {
+                    select.value = match;
+                    await setLanguage(match);
+                } else {
+                    select.value = 'en';
+                    await setLanguage('en');
+                }
+            } else {
+                await setLanguage('en');
+            }
+
+            // Event listener para troca manual de idioma
+            if (select) {
+                select.addEventListener('change', async function() {
+                    await setLanguage(this.value);
+                });
+            }
+
+            // Esconder overlay de carregamento
+            document.getElementById('loadingOverlay').classList.add('hidden');
+        }
+
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+</html>
